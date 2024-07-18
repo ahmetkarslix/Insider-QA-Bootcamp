@@ -1,0 +1,90 @@
+{
+  "datasource": {
+    "type": "mysql",
+    "uid": "fdgo1ept8ruo0c"
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "percentage",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "orange",
+            "value": 70
+          },
+          {
+            "color": "red",
+            "value": 85
+          }
+        ]
+      }
+    },
+    "overrides": []
+  },
+  "gridPos": {
+    "h": 8,
+    "w": 12,
+    "x": 0,
+    "y": 0
+  },
+  "id": 1,
+  "options": {
+    "reduceOptions": {
+      "values": true,
+      "calcs": [],
+      "fields": ""
+    },
+    "orientation": "auto",
+    "showThresholdLabels": false,
+    "showThresholdMarkers": true,
+    "sizing": "auto",
+    "minVizWidth": 75,
+    "minVizHeight": 75
+  },
+  "pluginVersion": "10.4.1",
+  "targets": [
+    {
+      "dataset": "bootcamp",
+      "datasource": {
+        "type": "mysql",
+        "uid": "fdgo1ept8ruo0c"
+      },
+      "editorMode": "code",
+      "format": "table",
+      "rawQuery": true,
+      "rawSql": "SELECT\r\n  result,\r\n  COUNT(result) AS count\r\nFROM\r\n  bootcamp.task_conclusion\r\nWHERE\r\n  result IN ('SUCCESS', 'FAILED')\r\nGROUP BY\r\n  result\r\nLIMIT\r\n  2\r\n",
+      "refId": "A",
+      "sql": {
+        "columns": [
+          {
+            "name": "COUNT",
+            "parameters": [
+              {
+                "name": "result",
+                "type": "functionParameter"
+              }
+            ],
+            "type": "function"
+          }
+        ],
+        "groupBy": [
+          {
+            "property": {
+              "type": "string"
+            },
+            "type": "groupBy"
+          }
+        ],
+        "limit": 50
+      },
+      "table": "task_conclusion"
+    }
+  ],
+  "title": "Panel Title",
+  "type": "gauge"
+}
